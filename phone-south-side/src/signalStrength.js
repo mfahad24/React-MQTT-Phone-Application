@@ -6,7 +6,7 @@ class SignalStrength {
   }
 
   start(interval, callback) {
-    callback(this._getRandomStrength());
+    this.stop();
     this.interval = setInterval(() => {
       callback(this._getRandomStrength());
     }, interval);

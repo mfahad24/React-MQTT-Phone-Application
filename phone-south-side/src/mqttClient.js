@@ -2,7 +2,7 @@ let mqtt = require("async-mqtt");
 
 const CONNECT_TIMEOUT = 5000;
 
-class MqttSender {
+class MqttClient {
   constructor() {
     this.client = null;
   }
@@ -26,6 +26,16 @@ class MqttSender {
     }
   }
 
+  async subscribe(topic, callback) {
+    if (this.isConnected()) {
+      await this.client.subscribe(topic);
+
+      this.client.on("message", (topic, message) => {
+        callback(topic, JSON.parse(message));
+      });
+    }
+  }
+
   _connectToBroker(broker) {
     return new Promise((resolve, reject) => {
       let connectionString = `ws://${broker}`;
@@ -33,7 +43,7 @@ class MqttSender {
 
       setTimeout(() => {
         if (!this.isConnected()) {
-          reject();
+          reject("connection timeout");
         }
       }, CONNECT_TIMEOUT);
 
@@ -44,4 +54,4 @@ class MqttSender {
   }
 }
 
-module.exports = new MqttSender();
+module.exports = new MqttClient();
