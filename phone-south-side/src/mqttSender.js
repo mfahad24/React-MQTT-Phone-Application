@@ -15,6 +15,17 @@ class MqttSender {
     return this.client !== null ? this.client.connected : false;
   }
 
+  /**
+   * sends data to specified topic.
+   *
+   * @note retain flag is set, so data is retained in Broker
+   */
+  sendData(topic, data) {
+    if (this.isConnected()) {
+      this.client.publish(topic, JSON.stringify(data), { retain: true });
+    }
+  }
+
   _connectToBroker(broker) {
     return new Promise((resolve, reject) => {
       let connectionString = `ws://${broker}`;
