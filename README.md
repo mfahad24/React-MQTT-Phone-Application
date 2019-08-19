@@ -2,7 +2,7 @@
 
 ## About
 
-This demo project was created for the participants of the Cyclone Bootcamp, to better understand the Ford Cyclone architecture and how data is exchanged with the south side.
+This demo project was created for the participants of the Cyclone Bootcamp (https://infohub.automotive.elektrobit.com/display/PRJFS4/Bootcamp), to better understand the Ford Cyclone architecture and how data is exchanged with the south side.
 
 It countains a simple _phone-south-side_ - a simple node app - that repeatedly generates MQTT messages with a random phone signal strength and publishes it to the topic _hmi/phone/signalStrength_.
 
