@@ -44,6 +44,7 @@ class MqttClient {
       setTimeout(() => {
         if (!this.isConnected()) {
           reject("connection timeout");
+          client.end(true);
         }
       }, CONNECT_TIMEOUT);
 
