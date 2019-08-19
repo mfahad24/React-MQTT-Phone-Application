@@ -15,6 +15,7 @@ class SignalStrength {
   stop() {
     if (this.interval !== -1) {
       clearInterval(this.interval);
+      this.interval = -1;
     }
   }
 
