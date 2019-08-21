@@ -22,7 +22,9 @@ class MqttClient {
    */
   sendData(topic, data) {
     if (this.isConnected()) {
-      this.client.publish(topic, JSON.stringify(data), { retain: true });
+      this.client.publish(topic, JSON.stringify({ payload: data }), {
+        retain: true
+      });
     }
   }
 
