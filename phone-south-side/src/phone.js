@@ -8,6 +8,7 @@ class Phone {
   constructor() {
     this.mqttClient = require("./mqttClient");
     this.signalStrength = new SignalStrength();
+    this.currentSignalStrength = -1;
     this.isConnected = false;
   }
 
@@ -17,9 +18,13 @@ class Phone {
       console.log("connection established");
 
       this.mqttClient.subscribe(PHONE_OFF_TOPIC, (topic, data) => {
-        console.log("received phone connected state: " + data);
+        console.log(
+          "received phone connected state for",
+          topic,
+          ": " + data.payload
+        );
 
-        switch (data) {
+        switch (data.payload) {
           case 0: // off
             this._disconnect();
             break;
@@ -40,8 +45,13 @@ class Phone {
 
   _connect() {
     if (!this.isConnected) {
+      this.mqttClient.sendData(
+        SIGNAL_STRENGTH_TOPIC,
+        this.currentSignalStrength
+      );
       this.signalStrength.start(SIGNAL_STRENGTH_INTERVAL, strength => {
         console.log("sending signal strength: " + strength);
+        this.currentSignalStrength = strength;
         this.mqttClient.sendData(SIGNAL_STRENGTH_TOPIC, strength);
       });
       this.isConnected = true;
