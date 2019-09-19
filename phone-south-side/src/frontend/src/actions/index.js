@@ -5,7 +5,6 @@ import {
 } from "../constants";
 
 export const changeStrengthValue = strengthVal => {
-  //   console.log("STRENGTH ACTION");
   return {
     type: CHANGE_SIGNAL_STRENGTH,
     payload: strengthVal
@@ -20,7 +19,6 @@ export const changeConnectedValue = connectVal => {
 };
 
 export const changeMqttBoolean = mqttBoolean => {
-  console.log("HELLO");
   return {
     type: CHANGE_MQTTBOOL_VALUE,
     payload: mqttBoolean
