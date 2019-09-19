@@ -24,11 +24,10 @@ function websocketInitChannel() {
     let client = mqtt.connect("ws://127.0.0.1:7000");
     client.subscribe("hmi/phone/signalStrength");
     client.on("message", function(message, payload) {
-      console.log("MESSAGE", message);
-      console.log("PAYLOAD", payload.toString());
+      const payloadObject = JSON.parse(payload.toString());
       return emitter({
         type: CHANGE_SIGNAL_STRENGTH,
-        payload: payload.toString()
+        payload: payloadObject.payload
       });
     });
 
