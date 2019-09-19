@@ -19,7 +19,6 @@ class Phone extends Component {
   };
 
   turnPhoneOff = props => {
-    props.changeConnectedValue(0);
     props.changeStrengthValue(null);
     // clearInterval(props);
   };

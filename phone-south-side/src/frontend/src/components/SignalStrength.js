@@ -22,8 +22,9 @@ class SignalStrength extends Component {
       FiveImage
     ];
     if (
-      this.props.connectedValue === 0 &&
-      this.props.mqttClientBoolean === false
+      (this.props.connectedValue === 0 &&
+        this.props.mqttClientBoolean === false) ||
+      this.props.signalStrength === null
     ) {
       return <img className="offimage" src={OffImage} alt="off"></img>;
     } else {
