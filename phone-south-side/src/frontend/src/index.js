@@ -7,8 +7,10 @@ import { createStore, applyMiddleware } from "redux";
 import reducers from "./reducers";
 import createSagaMiddleware from "redux-saga";
 import {
-  watchMqttClientBooleanChange,
-  watchConnectedValueChange
+  // watchMqttClientBooleanChange,
+  watchConnectedValueChange,
+  webSocketSagas
+  // mySaga
 } from "./sagas/saga.js";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -20,7 +22,9 @@ ReactDOM.render(
   document.querySelector("#root")
 );
 
-sagaMiddleware.run(watchMqttClientBooleanChange);
+// sagaMiddleware.run(watchMqttClientBooleanChange);
+sagaMiddleware.run(webSocketSagas);
+// sagaMiddleware.run(mySaga);
 sagaMiddleware.run(watchConnectedValueChange);
 
 //steps in setting up a saga - watcher saga catches an action before it gets to reducer and allows, for instance, an async request to complete, then it will dispatch another action that will reach reducer

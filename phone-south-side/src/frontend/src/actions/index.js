@@ -20,6 +20,7 @@ export const changeConnectedValue = connectVal => {
 };
 
 export const changeMqttBoolean = mqttBoolean => {
+  console.log("HELLO");
   return {
     type: CHANGE_MQTTBOOL_VALUE,
     payload: mqttBoolean

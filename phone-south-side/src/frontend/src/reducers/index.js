@@ -17,6 +17,7 @@ import {
 // };
 
 const signalStrength = (signalStrength = null, action) => {
+  // console.log("HEY SIGNAL STRENGTH");
   if (action.type === CHANGE_SIGNAL_STRENGTH) {
     // console.log("CHANGE SIGNAL");
     return action.payload;
