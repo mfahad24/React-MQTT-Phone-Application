@@ -32,6 +32,7 @@ class Phone extends Component {
 
   changeMqttBoolean = props => {
     props.changeMqttBoolean(true);
+    props.changeConnectedValue(1);
   };
 
   renderButton() {
@@ -45,7 +46,7 @@ class Phone extends Component {
           Connect HMI to MQTT
         </button>
 
-        <button
+        {/* <button
           className="ui button blue"
           disabled={
             this.props.mqttClientBoolean === false ||
@@ -54,7 +55,7 @@ class Phone extends Component {
           onClick={() => this.turnPhoneOn(this.props)}
         >
           Conect Phone
-        </button>
+        </button> */}
 
         <button
           className="ui button blue"
@@ -89,6 +90,7 @@ const mapStateToProps = state => {
 export default connect(
   //SO WHY DO I NEED TO STILL USE 'mapStateToProps' ABOVE??????
   //ANSWER: DONT NEED TO RETURN ANYTHING, I AM USING TO CONSOLE.LOG LINE #36 SO NEED STATE TO BE MAPPED TO PROPS... however it needs to return at least an empty object... try removing everythign in mapstate to props method above
+  //UPDATED ANSWER: if we want to use conditional statements or even console.log's, its necessary to map the state to props
   mapStateToProps,
   {
     changeConnectedValue,

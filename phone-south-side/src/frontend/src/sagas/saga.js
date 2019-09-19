@@ -9,7 +9,6 @@ import {
 } from "../constants";
 
 let mqtt = require("async-mqtt");
-let client = mqtt.connect("ws://127.0.0.1:7000");
 
 export function* webSocketSagas() {
   const channel = yield call(websocketInitChannel);

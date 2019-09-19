@@ -21,12 +21,9 @@ class SignalStrength extends Component {
       FourImage,
       FiveImage
     ];
-
-    if (this.props.connectedValue === 0) {
-      return;
-    } else if (
-      this.props.connectedValue === 1 &&
-      this.props.signalStrength === null
+    if (
+      this.props.connectedValue === 0 &&
+      this.props.mqttClientBoolean === false
     ) {
       return <img className="offimage" src={OffImage} alt="off"></img>;
     } else {
@@ -56,7 +53,8 @@ class SignalStrength extends Component {
 const mapStateToProps = state => {
   return {
     connectedValue: state.connectedValue,
-    signalStrength: state.signalStrength
+    signalStrength: state.signalStrength,
+    mqttClientBoolean: state.mqttClientBoolean
   };
 };
 
