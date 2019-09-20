@@ -43,7 +43,11 @@ class SignalStrength extends Component {
     return (
       <div className="signalstrengthdiv">
         <div className="phonecontainer">
-          <img className="phone" src={PhoneImage} alt="phone" />
+          <img
+            className="phone animated animatedFadeInUp fadeInUp"
+            src={PhoneImage}
+            alt="phone"
+          />
           {this.selectSignalStrengthImage()}
         </div>
       </div>

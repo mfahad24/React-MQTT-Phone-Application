@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import {
   changeConnectedValue,
   changeStrengthValue,
-  changeMqttBoolean
+  changeMqttBoolean,
+  turnOffSignalStrength
 } from "../actions";
 import "./Phone.css";
 
@@ -19,7 +20,7 @@ class Phone extends Component {
   };
 
   turnPhoneOff = props => {
-    props.changeStrengthValue(null);
+    props.turnOffSignalStrength(0);
     // clearInterval(props);
   };
 
@@ -38,11 +39,11 @@ class Phone extends Component {
     return (
       <div className="buttondiv">
         <button
-          className="ui button blue"
+          className="ui button blue huge"
           disabled={this.props.mqttClientBoolean === true}
           onClick={() => this.changeMqttBoolean(this.props)}
         >
-          Connect HMI to MQTT
+          Connect Phone to MQTT
         </button>
 
         {/* <button
@@ -57,11 +58,11 @@ class Phone extends Component {
         </button> */}
 
         <button
-          className="ui button blue"
+          className="ui button blue huge"
           disabled={this.props.connectedValue === 0}
           onClick={() => this.turnPhoneOff(this.props)}
         >
-          Disconnect Phone
+          Turn Off Signal
         </button>
 
         <br />
@@ -94,6 +95,7 @@ export default connect(
   {
     changeConnectedValue,
     changeStrengthValue,
-    changeMqttBoolean
+    changeMqttBoolean,
+    turnOffSignalStrength
   }
 )(Phone);

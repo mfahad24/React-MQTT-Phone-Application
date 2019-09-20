@@ -15,6 +15,17 @@
   top: 200px;
   right: 35px;
   position: absolute;
+  /* this needed for animation keyframe below  */
+  animation: cssAnimation 0s 1.5s forwards;
+  visibility: hidden;
+}
+
+/* offimage fades in after phone fade up is complete  */
+
+@keyframes cssAnimation {
+  to {
+    visibility: visible;
+  }
 }
 
 .phonecontainer {
@@ -51,4 +62,47 @@
   100% {
     opacity: 1;
   }
+}
+
+/* buttons fade in animation below  */
+
+@keyframes fadeInUp {
+  from {
+    transform: translate3d(0, 40px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+    transform: translate3d(0, 40px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+/* phone slide up animation below */
+
+.animated {
+  animation-duration: 2.5s;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 2.5s;
+  -webkit-animation-fill-mode: both;
+}
+
+.animatedFadeInUp {
+  opacity: 0;
+}
+
+.fadeInUp {
+  opacity: 0;
+  animation-name: fadeInUp;
+  -webkit-animation-name: fadeInUp;
 }
