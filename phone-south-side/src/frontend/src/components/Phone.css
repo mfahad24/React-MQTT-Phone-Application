@@ -16,7 +16,7 @@
   right: 35px;
   position: absolute;
   /* this needed for animation keyframe below  */
-  animation: cssAnimation 0s 1.5s forwards;
+  animation: cssAnimation 0s 2s forwards;
   visibility: hidden;
 }
 

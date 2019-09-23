@@ -11,6 +11,7 @@ import {
   // watchConnectedValueChange,
   signalStrengthSaga,
   switchOffPhone
+  // listenForDisconnectValue
   // signalSignalStrength
   // mySaga
 } from "./sagas/saga.js";
@@ -29,6 +30,7 @@ sagaMiddleware.run(signalStrengthSaga);
 // sagaMiddleware.run(mySaga);
 // sagaMiddleware.run(watchConnectedValueChange);
 sagaMiddleware.run(switchOffPhone);
+// sagaMiddleware.run(listenForDisconnectValue);
 
 //steps in setting up a saga - watcher saga catches an action before it gets to reducer and allows, for instance, an async request to complete, then it will dispatch another action that will reach reducer
 //import redux from redux-saga and applymiddleware from redux

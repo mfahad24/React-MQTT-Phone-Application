@@ -1,4 +1,4 @@
-import { takeEvery, put, take, call, actionChannel } from "redux-saga/effects";
+import { takeEvery, put, take, call } from "redux-saga/effects";
 import { eventChannel } from "redux-saga";
 import {
   CHANGE_CONNECTED_VALUE,
@@ -45,28 +45,95 @@ export function* switchOffPhone() {
 }
 
 export function* changeSignalStrength() {
-  console.log("turning off signal...");
-  let turnOffPaylod = { payload: 0 };
-  yield client.subscribe("hmi/phone/set/connected");
-  // yield client.publish("hmi/phone/set/connected", turnOffPaylod, err => {
-  //   console.log("HELLO");
-  //   return console.log(err);
-  // });
-  yield client.on("publish", function(turnOffPayload, err) {
-    // console.log("HELLO");
-    console.log("PAYLOAD", turnOffPayload);
-    console.log("ERR", err.toString());
-    // return console.log(err);
+  yield console.log("turning off signal...");
+  //solution for error "SyntaxError: Unexpected end of JSON input"
+  let payload = JSON.stringify({ payload: 0 });
+  yield client.publish("hmi/phone/set/connected", payload, () => {
+    changeConnectedValue();
   });
 }
 
+export function changeConnectedValue() {
+  client.subscribe("hmi/phone/connected");
+  client.on("message", function(message, payload) {
+    console.log("topic:", message);
+    let payloadObject = JSON.parse(payload.toString());
+    console.log(payloadObject);
+    put({ type: CHANGE_CONNECTED_VALUE_ASYNC, payload: payloadObject.payload });
+  });
+  // yield;
+  //----------
+  // console.log("OH HEY");
+  // const channel = yield call(testFunc);
+  // while (true) {
+  //   const action = yield take(channel);
+  //   yield put(action);
+  // }
+}
+
+// export function* test() {
+//   yield console.log("HEY");
+// }
+
+// function testFunc() {
+//   return eventChannel(emitter => {
+//     client.subscribe("hmi/phone/connected");
+//     client.on("message", function(message, payload) {
+//       console.log(payload.toString());
+//       let payloadObject = JSON.parse(payload.toString());
+//       return emitter({
+//         type: CHANGE_CONNECTED_VALUE_ASYNC,
+//         payload: payloadObject.payload
+//       });
+//     });
+
+//     //unsubscribe function below
+//     return () => {
+//       console.log("SOCKET OFF!!");
+//     };
+//   });
+// }
+
+// export function* listenForDisconnetValue() {
+//   yield client.subscribe("hmi/phone/connected", () => {
+//     console.log("HELLO THERE");
+//   });
+// }
+
 //-----------------------------------------
 
-//sagas that watch and act upon phone connection and strength value change
-export function* watchConnectedValueChange() {
-  yield takeEvery(CHANGE_CONNECTED_VALUE, changeConnectedValue);
-}
+// export function* listenForDisconnectValue() {
+//   const channel = yield call(disconnectValueEmitter);
+//   while (true) {
+//     const action = yield take(channel);
+//     yield put(action);
+//   }
+// }
 
-export function* changeConnectedValue() {
-  yield put({ type: CHANGE_CONNECTED_VALUE_ASYNC, payload: 1 });
-}
+// function disconnectValueEmitter() {
+//   return eventChannel(emitter => {
+//     client.subscribe("hmi/phone/connected");
+//     client.on("message", function(message, payload) {
+//       console.log("HERE IS THE PAYLOAD", payload.toString());
+//       let payloadObject = JSON.parse(payload.toString());
+//       return emitter({
+//         type: CHANGE_CONNECTED_VALUE_ASYNC,
+//         payload: payloadObject.payload
+//       });
+//     });
+
+//     //unsubscribe function below
+//     return () => {
+//       console.log("SOCKET OFF!!");
+//     };
+//   });
+// }
+
+//sagas that watch and act upon phone connection and strength value change
+// export function* watchConnectedValueChange() {
+//   yield takeEvery(CHANGE_CONNECTED_VALUE, changeConnectedValue);
+// }
+
+// export function* changeConnectedValue() {
+//   yield put({ type: CHANGE_CONNECTED_VALUE_ASYNC, payload: 1 });
+// }

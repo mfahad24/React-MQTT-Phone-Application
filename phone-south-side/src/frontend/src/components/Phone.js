@@ -9,6 +9,9 @@ import {
 import "./Phone.css";
 
 class Phone extends Component {
+  componentDidUpdate() {
+    console.log("THE FINAL CONNECTED VALUE IS:", this.props.connectedValue);
+  }
   turnPhoneOn = props => {
     props.changeConnectedValue(10);
     // setInterval(function() {
@@ -43,7 +46,7 @@ class Phone extends Component {
           disabled={this.props.mqttClientBoolean === true}
           onClick={() => this.changeMqttBoolean(this.props)}
         >
-          Connect Phone to MQTT
+          Connect to MQTT
         </button>
 
         {/* <button
