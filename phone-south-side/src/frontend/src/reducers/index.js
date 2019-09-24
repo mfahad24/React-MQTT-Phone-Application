@@ -25,10 +25,10 @@ const signalStrength = (signalStrength = null, action) => {
 };
 
 const connectedValue = (connectVal = 0, action) => {
-  if (
-    action.type === CHANGE_CONNECTED_VALUE ||
-    action.type === CHANGE_CONNECTED_VALUE_ASYNC
-  ) {
+  if (action.type === CHANGE_CONNECTED_VALUE) {
+    return action.payload;
+  } else if (action.type === CHANGE_CONNECTED_VALUE_ASYNC) {
+    console.log("OH HEY BRO");
     return action.payload;
   } else {
     return connectVal;

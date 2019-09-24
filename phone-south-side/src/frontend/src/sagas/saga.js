@@ -1,7 +1,7 @@
 import { takeEvery, put, take, call } from "redux-saga/effects";
 import { eventChannel } from "redux-saga";
 import {
-  CHANGE_CONNECTED_VALUE,
+  // CHANGE_CONNECTED_VALUE,
   // CHANGE_MQTTBOOL_VALUE,
   // CHANGE_MQTTBOOL_VALUE_ASYNC,
   CHANGE_CONNECTED_VALUE_ASYNC,
@@ -47,39 +47,55 @@ export function* switchOffPhone() {
 export function* changeSignalStrength() {
   yield console.log("turning off signal...");
   //solution for error "SyntaxError: Unexpected end of JSON input"
+  //simply cant send var payload = { payload: 0}
   let payload = JSON.stringify({ payload: 0 });
+  // console.log(payload);
   yield client.publish("hmi/phone/set/connected", payload, () => {
-    changeConnectedValue();
+    listenForDisconnectValue();
   });
 }
 
-export function changeConnectedValue() {
+export function listenForDisconnectValue() {
   client.subscribe("hmi/phone/connected");
   client.on("message", function(message, payload) {
     console.log("topic:", message);
     let payloadObject = JSON.parse(payload.toString());
-    console.log(payloadObject);
+    console.log("payload:", payloadObject.payload);
+    testFunc(payloadObject.payload);
     put({ type: CHANGE_CONNECTED_VALUE_ASYNC, payload: payloadObject.payload });
   });
-  // yield;
+
+  // while (false) {
+  //   console.log("HELLO");
+  //   const { payload } = yield take("REQUEST");
+  //   yield fork(handleRequest, payload);
+  // }
   //----------
   // console.log("OH HEY");
-  // const channel = yield call(testFunc);
+  // const channel = yield call(webSocketEndChannel);
   // while (true) {
   //   const action = yield take(channel);
   //   yield put(action);
   // }
 }
 
+export function testFunc(num) {
+  console.log("payload value", num);
+}
+
+// function* handleRequest(payload) {
+//   yield console.log("HELLO");
+// }
+
 // export function* test() {
 //   yield console.log("HEY");
 // }
 
-// function testFunc() {
+// function webSocketEndChannel() {
 //   return eventChannel(emitter => {
 //     client.subscribe("hmi/phone/connected");
 //     client.on("message", function(message, payload) {
-//       console.log(payload.toString());
+//       // console.log(payload.toString());
 //       let payloadObject = JSON.parse(payload.toString());
 //       return emitter({
 //         type: CHANGE_CONNECTED_VALUE_ASYNC,

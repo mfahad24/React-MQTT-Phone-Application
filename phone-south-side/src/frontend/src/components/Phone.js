@@ -10,7 +10,7 @@ import "./Phone.css";
 
 class Phone extends Component {
   componentDidUpdate() {
-    console.log("THE FINAL CONNECTED VALUE IS:", this.props.connectedValue);
+    console.log("FINAL CONNECTED:", this.props.connectedValue);
   }
   turnPhoneOn = props => {
     props.changeConnectedValue(10);
@@ -75,6 +75,7 @@ class Phone extends Component {
   }
 
   render() {
+    console.log("-------");
     console.log("MQTTVALUE", this.props.mqttClientBoolean);
     console.log("CONNECTEDVALUE", this.props.connectedValue);
     // console.log("STRENGTHVALUE", this.props.signalStrength);

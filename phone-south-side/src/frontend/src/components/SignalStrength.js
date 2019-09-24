@@ -12,6 +12,10 @@ import "./Phone.css";
 import { changeStrengthValue } from "../actions";
 
 class SignalStrength extends Component {
+  componentDidUpdate() {
+    // console.log("FINAL CONNECTED SIGNAL STRENGTH:", this.props.connectedValue);
+  }
+
   selectSignalStrengthImage() {
     const allImages = [
       ZeroImage,
@@ -22,9 +26,8 @@ class SignalStrength extends Component {
       FiveImage
     ];
     if (
-      (this.props.connectedValue === 0 &&
-        this.props.mqttClientBoolean === false) ||
-      this.props.signalStrength === null
+      this.props.mqttClientBoolean === false ||
+      this.props.connectedValue === 0
     ) {
       return <img className="offimage" src={OffImage} alt="off"></img>;
     } else {
