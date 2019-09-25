@@ -7,15 +7,6 @@ import {
   CHANGE_MQTTBOOL_VALUE_ASYNC
 } from "../constants";
 
-// const appPhone = () => {
-//   return [
-//     {
-//       signalStrengh: null,
-//       connected: null
-//     }
-//   ];
-// };
-
 const signalStrength = (signalStrength = null, action) => {
   if (action.type === CHANGE_SIGNAL_STRENGTH) {
     return action.payload;
@@ -28,7 +19,6 @@ const connectedValue = (connectVal = 0, action) => {
   if (action.type === CHANGE_CONNECTED_VALUE) {
     return action.payload;
   } else if (action.type === CHANGE_CONNECTED_VALUE_ASYNC) {
-    console.log("OH HEY BRO");
     return action.payload;
   } else {
     return connectVal;
@@ -47,7 +37,6 @@ const mqttClientBoolean = (clientBoolean = false, action) => {
 };
 
 export default combineReducers({
-  //   appPhone: appPhone,
   signalStrength: signalStrength,
   connectedValue: connectedValue,
   mqttClientBoolean: mqttClientBoolean

@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from "react";
 import Phone from "./Phone.js";
-// import SignalStrength from "./SignalStrength";
 const SignalStrength = lazy(() => import("./SignalStrength"));
 
 const App = () => {

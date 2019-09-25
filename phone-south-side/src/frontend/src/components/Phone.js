@@ -13,27 +13,14 @@ class Phone extends Component {
     console.log("FINAL CONNECTED:", this.props.connectedValue);
   }
   turnPhoneOn = props => {
-    props.changeConnectedValue(10);
-    // setInterval(function() {
-    //   props.changeStrengthValue(Math.round(Math.random() * 5));
-    // }, 1500);
-    // props.changeStrengthValue(null);
-    // console.log("CONNECTED?", this.props.connectedValue);
-    // console.log("STRENGTH?", this.props.signalStrength);
+    props.changeConnectedValue(1);
   };
 
   turnPhoneOff = props => {
     props.turnOffSignalStrength(0);
     props.changeMqttBoolean(false);
-    // clearInterval(props);
     props.changeConnectedValue(0);
   };
-
-  // changeStrength = props => {
-  //   setInterval(function() {
-  //     props.changeStrengthValue(Math.round(Math.random() * 5));
-  //   }, 1500);
-  // };
 
   changeMqttBoolean = props => {
     props.changeMqttBoolean(true);
@@ -50,18 +37,6 @@ class Phone extends Component {
         >
           Connect to MQTT
         </button>
-
-        {/* <button
-          className="ui button blue"
-          disabled={
-            this.props.mqttClientBoolean === false ||
-            this.props.connectedValue === 1
-          }
-          onClick={() => this.turnPhoneOn(this.props)}
-        >
-          Conect Phone
-        </button> */}
-
         <button
           className="ui button blue huge"
           disabled={this.props.connectedValue === 0}
@@ -80,7 +55,6 @@ class Phone extends Component {
     console.log("-------");
     console.log("MQTTVALUE", this.props.mqttClientBoolean);
     console.log("CONNECTEDVALUE", this.props.connectedValue);
-    // console.log("STRENGTHVALUE", this.props.signalStrength);
     return <div className="buttondiv">{this.renderButton()}</div>;
   }
 }

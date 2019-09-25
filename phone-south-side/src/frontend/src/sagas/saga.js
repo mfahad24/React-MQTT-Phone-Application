@@ -1,9 +1,6 @@
 import { takeEvery, put, take, call } from "redux-saga/effects";
 import { eventChannel } from "redux-saga";
 import {
-  // CHANGE_CONNECTED_VALUE,
-  // CHANGE_MQTTBOOL_VALUE,
-  // CHANGE_MQTTBOOL_VALUE_ASYNC,
   CHANGE_CONNECTED_VALUE_ASYNC,
   CHANGE_SIGNAL_STRENGTH,
   TURN_OFF_SIGNAL_STRENGTH
@@ -38,7 +35,6 @@ function websocketInitChannel() {
 
 //sagas to turn off signal strength
 export function* switchOffPhone() {
-  // console.log("inside switchoff phone...");
   yield takeEvery(TURN_OFF_SIGNAL_STRENGTH, changeSignalStrength);
 }
 
@@ -47,7 +43,6 @@ export function* changeSignalStrength() {
   //solution for error "SyntaxError: Unexpected end of JSON input"
   //simply cant send var payload = { payload: 0}
   let payload = JSON.stringify({ payload: 0 });
-  // console.log(payload);
   yield client.publish("hmi/phone/set/connected", payload, () => {
     listenForDisconnectValue().next();
   });

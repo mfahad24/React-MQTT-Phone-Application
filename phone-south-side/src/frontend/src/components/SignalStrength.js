@@ -12,10 +12,6 @@ import "./Phone.css";
 import { changeStrengthValue } from "../actions";
 
 class SignalStrength extends Component {
-  componentDidUpdate() {
-    // console.log("FINAL CONNECTED SIGNAL STRENGTH:", this.props.connectedValue);
-  }
-
   selectSignalStrengthImage() {
     const allImages = [
       ZeroImage,
