@@ -24,7 +24,9 @@ class Phone extends Component {
 
   turnPhoneOff = props => {
     props.turnOffSignalStrength(0);
+    props.changeMqttBoolean(false);
     // clearInterval(props);
+    props.changeConnectedValue(0);
   };
 
   // changeStrength = props => {

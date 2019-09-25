@@ -32,9 +32,7 @@ function websocketInitChannel() {
     });
 
     //unsubscribe function below
-    return () => {
-      console.log("SOCKET OFF!!");
-    };
+    return () => {};
   });
 }
 
@@ -51,17 +49,18 @@ export function* changeSignalStrength() {
   let payload = JSON.stringify({ payload: 0 });
   // console.log(payload);
   yield client.publish("hmi/phone/set/connected", payload, () => {
-    listenForDisconnectValue();
+    listenForDisconnectValue().next();
   });
 }
 
-export function listenForDisconnectValue() {
-  client.subscribe("hmi/phone/connected");
-  client.on("message", function(message, payload) {
-    console.log("topic:", message);
+export function* listenForDisconnectValue() {
+  // console.log("WE ARE HERE");
+  yield client.subscribe("hmi/phone/connected");
+  yield client.on("message", function(message, payload) {
+    // console.log("topic:", message);
     let payloadObject = JSON.parse(payload.toString());
-    console.log("payload:", payloadObject.payload);
-    testFunc(payloadObject.payload);
+    console.log("returned final connected:", payloadObject.payload);
+    // testFunc(payloadObject.payload);
     put({ type: CHANGE_CONNECTED_VALUE_ASYNC, payload: payloadObject.payload });
   });
 
@@ -70,7 +69,7 @@ export function listenForDisconnectValue() {
   //   const { payload } = yield take("REQUEST");
   //   yield fork(handleRequest, payload);
   // }
-  //----------
+  // ----------
   // console.log("OH HEY");
   // const channel = yield call(webSocketEndChannel);
   // while (true) {
@@ -79,9 +78,9 @@ export function listenForDisconnectValue() {
   // }
 }
 
-export function testFunc(num) {
-  console.log("payload value", num);
-}
+// export function testFunc(num) {
+//   console.log("payload value", num);
+// }
 
 // function* handleRequest(payload) {
 //   yield console.log("HELLO");
