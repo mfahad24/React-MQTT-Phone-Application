@@ -3,6 +3,10 @@
   margin: 20px;
 }
 
+.phone {
+  margin-top: -40px;
+}
+
 .strengthimage {
   width: 200px;
   top: 200px;
@@ -12,7 +16,7 @@
 
 .offimage {
   width: 200px;
-  top: 200px;
+  top: 170px;
   right: 35px;
   position: absolute;
   /* this needed for animation keyframe below  */
