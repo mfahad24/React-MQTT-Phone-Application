@@ -1,0 +1,30 @@
+.headertoggle {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 20px;
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  font-style: italic;
+  border-bottom: 2px solid lightblue;
+  padding-bottom: 20px;
+  /* box-shadow: 0px 0px 8px 2px #000000; */
+}
+
+/* 'toggle here' slide in animation  */
+.slide {
+  -webkit-animation: slide 2s forwards;
+  -webkit-animation-delay: 0s;
+  animation: slide 2s forwards;
+  animation-delay: 0s;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-500%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
