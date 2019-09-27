@@ -4,11 +4,23 @@ import App from "./components/App";
 import { Provider } from "react-redux";
 //takes reducers and creates store
 import { createStore, applyMiddleware } from "redux";
-import reducers from "./reducers";
+import { combineReducers } from "redux";
+import {
+  mqttClientBoolean,
+  connectedValue
+} from "./components/PhoneComponent/reducers.js";
+import { signalStrength } from "./components/SignalStrengthComponent/reducers.js";
 import createSagaMiddleware from "redux-saga";
-import { signalStrengthSaga, switchOffPhone } from "./sagas/saga.js";
+import { signalStrengthSaga } from "./components/SignalStrengthComponent/sagas.js";
+import { switchOffPhone } from "./components/PhoneComponent/sagas.js";
 
 const sagaMiddleware = createSagaMiddleware();
+
+const reducers = combineReducers({
+  signalStrength,
+  mqttClientBoolean,
+  connectedValue
+});
 
 ReactDOM.render(
   <Provider store={createStore(reducers, applyMiddleware(sagaMiddleware))}>

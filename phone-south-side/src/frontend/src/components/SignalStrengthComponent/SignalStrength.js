@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import OffImage from "../images/Off.png";
-import ZeroImage from "../images/0.png";
-import OneImage from "../images/1.png";
-import TwoImage from "../images/2.png";
-import ThreeImage from "../images/3.png";
-import FourImage from "../images/4.png";
-import FiveImage from "../images/5.png";
-import PhoneImage from "../images/phone.png";
-import "./Phone.css";
-import { changeStrengthValue } from "../actions";
+import OffImage from "../../images/Off.png";
+import ZeroImage from "../../images/0.png";
+import OneImage from "../../images/1.png";
+import TwoImage from "../../images/2.png";
+import ThreeImage from "../../images/3.png";
+import FourImage from "../../images/4.png";
+import FiveImage from "../../images/5.png";
+import PhoneImage from "../../images/phone.png";
+import "../PhoneComponent/Phone.css";
+import { changeStrengthValue } from "./actions.js";
 
 class SignalStrength extends Component {
   selectSignalStrengthImage() {

@@ -1,21 +1,40 @@
 import React, { lazy, Suspense } from "react";
-import Phone from "./Phone.js";
+import Phone from "./PhoneComponent/Phone.js";
+// import { DynamicModuleLoader } from "redux-dynamic-modules";
+// import { ModuleExample } from "./DynamicModule.js";
 import "./App.css";
-const SignalStrength = lazy(() => import("./SignalStrength"));
+const SignalStrength = lazy(() =>
+  import("./SignalStrengthComponent/SignalStrength")
+);
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked: false
+    };
+  }
+
   render() {
+    console.log("CHECK STATUS", this.state.checked);
     return (
+      // <DynamicModuleLoader modules={[ModuleExample()]}>
       <div>
         <div className="headertoggle">
           <div className="slide">
-            toggle here<i className="angle double right icon"></i>
+            show device <i className="angle double right icon"></i>
           </div>
           <div className="ui toggle checkbox">
-            <input type="checkbox" name="public" />
+            <input
+              onChange={e => this.setState({ checked: e.target.checked })}
+              type="checkbox"
+              name="public"
+              checked={this.state.checked}
+            />
             <label></label>
           </div>
         </div>
+
         <Phone />
         <Suspense
           fallback={
@@ -27,6 +46,8 @@ class App extends React.Component {
           <SignalStrength />
         </Suspense>
       </div>
+      //{" "}
+      // </DynamicModuleLoader>
     );
   }
 }

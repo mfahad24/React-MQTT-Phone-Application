@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
   changeConnectedValue,
-  changeStrengthValue,
   changeMqttBoolean,
   turnOffSignalStrength
-} from "../actions";
+} from "./actions.js";
 import "./Phone.css";
 
 class Phone extends Component {
@@ -42,7 +41,7 @@ class Phone extends Component {
           disabled={this.props.connectedValue === 0}
           onClick={() => this.turnPhoneOff(this.props)}
         >
-          Turn Off Signal
+          Disconnect Signal
         </button>
 
         <br />
@@ -74,7 +73,6 @@ export default connect(
   mapStateToProps,
   {
     changeConnectedValue,
-    changeStrengthValue,
     changeMqttBoolean,
     turnOffSignalStrength
   }

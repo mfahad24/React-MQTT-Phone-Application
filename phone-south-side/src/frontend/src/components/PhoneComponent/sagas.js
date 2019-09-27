@@ -1,37 +1,8 @@
-import { takeEvery, put, take, call } from "redux-saga/effects";
-import { eventChannel } from "redux-saga";
-import {
-  CHANGE_CONNECTED_VALUE_ASYNC,
-  CHANGE_SIGNAL_STRENGTH,
-  TURN_OFF_SIGNAL_STRENGTH
-} from "../constants";
+import { takeEvery } from "redux-saga/effects";
+import { TURN_OFF_SIGNAL_STRENGTH } from "../../constants";
 
 let mqtt = require("async-mqtt");
 let client = mqtt.connect("ws://127.0.0.1:7000");
-
-export function* signalStrengthSaga() {
-  const channel = yield call(websocketInitChannel);
-  while (true) {
-    const action = yield take(channel);
-    yield put(action);
-  }
-}
-
-function websocketInitChannel() {
-  return eventChannel(emitter => {
-    client.subscribe("hmi/phone/signalStrength");
-    client.on("message", function(message, payload) {
-      let payloadObject = JSON.parse(payload.toString());
-      return emitter({
-        type: CHANGE_SIGNAL_STRENGTH,
-        payload: payloadObject.payload
-      });
-    });
-
-    //unsubscribe function below
-    return () => {};
-  });
-}
 
 //sagas to turn off signal strength
 export function* switchOffPhone() {
@@ -41,23 +12,25 @@ export function* switchOffPhone() {
 export function* changeSignalStrength() {
   yield console.log("turning off signal...");
   //solution for error "SyntaxError: Unexpected end of JSON input"
-  //simply cant send var payload = { payload: 0}
+  //simply cant send let payload = { payload: 0}
   let payload = JSON.stringify({ payload: 0 });
-  yield client.publish("hmi/phone/set/connected", payload, () => {
-    listenForDisconnectValue().next();
+  yield client.publish("hmi/phone/set/connected", payload, null, () => {
+    listenForDisconnectValue();
   });
 }
 
-export function* listenForDisconnectValue() {
-  // console.log("WE ARE HERE");
-  yield client.subscribe("hmi/phone/connected");
-  yield client.on("message", function(message, payload) {
-    // console.log("topic:", message);
-    let payloadObject = JSON.parse(payload.toString());
-    console.log("returned final connected:", payloadObject.payload);
+export function listenForDisconnectValue() {
+  console.log("WE ARE HERE");
+  client.subscribe("hmi/phone/connected");
+  // let payloadObject;
+  client.on("message", function(message, payload) {
+    console.log("topic:", message);
+    let returnedPayload = JSON.parse(payload.toString());
+    console.log("returned final connected:", returnedPayload.payload);
     // testFunc(payloadObject.payload);
-    put({ type: CHANGE_CONNECTED_VALUE_ASYNC, payload: payloadObject.payload });
+    // put({ type: CHANGE_CONNECTED_VALUE_ASYNC, payload: payloadObject.payload });
   });
+  // yield console.log("I AM HERE", payloadObject);
 
   // while (false) {
   //   console.log("HELLO");
