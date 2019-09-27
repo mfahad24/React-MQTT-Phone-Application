@@ -10,6 +10,7 @@
     "react-scripts": "2.1.8",
     "redux": "^4.0.4",
     "redux-dynamic-modules": "^5.0.2",
+    "redux-dynamic-modules-saga": "^5.0.2",
     "redux-saga": "^0.16.2"
   },
   "scripts": {
