@@ -1,9 +1,12 @@
 import { CHANGE_SIGNAL_STRENGTH } from "../../constants";
 
-export const signalStrength = (signalStrength = null, action) => {
+const initialState = {
+  signalStrength: undefined
+};
+export default (state = initialState, action) => {
   if (action.type === CHANGE_SIGNAL_STRENGTH) {
-    return action.payload;
+    return { ...state, signalStrength: action.payload };
   } else {
-    return signalStrength;
+    return state;
   }
 };

@@ -57,7 +57,7 @@ class SignalStrength extends Component {
 const mapStateToProps = state => {
   return {
     connectedValue: state.connectedValue,
-    signalStrength: state.signalStrength,
+    signalStrength: state.signalStrength.signalStrength,
     mqttClientBoolean: state.mqttClientBoolean
   };
 };
