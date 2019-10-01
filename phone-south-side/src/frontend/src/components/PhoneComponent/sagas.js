@@ -1,5 +1,6 @@
 import { takeEvery } from "redux-saga/effects";
 import { TURN_OFF_SIGNAL_STRENGTH } from "../../constants";
+// import store from "../../App.js";
 
 let mqtt = require("async-mqtt");
 let client = mqtt.connect("ws://127.0.0.1:7000");
@@ -29,6 +30,10 @@ export function listenForDisconnectValue() {
     console.log("returned final connected:", returnedPayload.payload);
     // testFunc(payloadObject.payload);
     // put({ type: CHANGE_CONNECTED_VALUE_ASYNC, payload: payloadObject.payload });
+    // store.dispatch({
+    //   type: CHANGE_CONNECTED_VALUE_ASYNC,
+    //   payload: payloadObject.payload
+    // });
   });
   // yield console.log("I AM HERE", payloadObject);
 

@@ -19,11 +19,19 @@ class Phone extends Component {
     props.turnOffSignalStrength(0);
     props.changeMqttBoolean(false);
     props.changeConnectedValue(0);
+
+    let phone = document.querySelector(".phonecontainer");
+    phone.classList.remove("vibrate");
+    phone.style.filter = "grayscale(1)";
   };
 
   changeMqttBoolean = props => {
     props.changeMqttBoolean(true);
     props.changeConnectedValue(1);
+
+    let phone = document.querySelector(".phonecontainer");
+    phone.classList.add("vibrate");
+    phone.style.filter = "none";
   };
 
   renderButton() {
@@ -38,7 +46,10 @@ class Phone extends Component {
         </button>
         <button
           className="ui button blue huge"
-          disabled={this.props.connectedValue === 0}
+          disabled={
+            this.props.connectedValue === 0 ||
+            this.props.connectedValue === undefined
+          }
           onClick={() => this.turnPhoneOff(this.props)}
         >
           Disconnect Signal
