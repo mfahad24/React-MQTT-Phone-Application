@@ -10,9 +10,11 @@ import { Provider } from "react-redux";
 import { getSagaExtension } from "redux-dynamic-modules-saga";
 import "./App.css";
 import { signalStrengthModule } from "./SignalStrengthComponent/module.js";
+import { phoneModule } from "./PhoneComponent/module.js";
 const SignalStrength = lazy(() =>
   import("./SignalStrengthComponent/SignalStrength")
 );
+// import SignalStrength from "./SignalStrengthComponent/SignalStrength.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -45,13 +47,16 @@ class App extends React.Component {
               <label></label>
             </div>
           </div>
-          <Phone />
+
           {this.state.checked ? (
-            <Suspense fallback={<div></div>}>
-              <DynamicModuleLoader modules={[signalStrengthModule()]}>
+            <DynamicModuleLoader
+              modules={[signalStrengthModule(), phoneModule()]}
+            >
+              <Phone />
+              <Suspense fallback={<div></div>}>
                 <SignalStrength />
-              </DynamicModuleLoader>
-            </Suspense>
+              </Suspense>
+            </DynamicModuleLoader>
           ) : (
             <div>Toggle Status</div>
           )}

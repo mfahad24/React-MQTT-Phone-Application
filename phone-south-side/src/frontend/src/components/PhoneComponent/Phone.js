@@ -60,9 +60,9 @@ class Phone extends Component {
 
 const mapStateToProps = state => {
   return {
-    connectedValue: state.connectedValue,
-    signalStrength: state.signalStrength,
-    mqttClientBoolean: state.mqttClientBoolean
+    connectedValue: state.connectedValue.connectVal,
+    signalStrength: state.signalStrength.signalStrength,
+    mqttClientBoolean: state.mqttClientBoolean.clientBoolean
   };
 };
 

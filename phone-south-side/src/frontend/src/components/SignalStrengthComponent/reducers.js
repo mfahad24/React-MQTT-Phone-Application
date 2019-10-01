@@ -1,6 +1,6 @@
 import { CHANGE_SIGNAL_STRENGTH } from "../../constants";
 
-const initialState = {
+const initialSignalStrength = {
   signalStrength: null
 };
 
