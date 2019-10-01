@@ -1,5 +1,5 @@
 import { changeStrengthValue } from "./actions.js";
-import signalStrength from "./reducers.js";
+import { signalStrength } from "./reducers.js";
 import { signalStrengthSaga } from "./sagas.js";
 
 export function signalStrengthModule() {
