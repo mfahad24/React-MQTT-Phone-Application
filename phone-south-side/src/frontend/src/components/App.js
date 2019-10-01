@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log("CHECK STATUS", this.state.checked);
+    // console.log("CHECK STATUS", this.state.checked);
     return (
       <Provider store={this.store}>
         <div>
@@ -58,7 +58,7 @@ class App extends React.Component {
               </Suspense>
             </DynamicModuleLoader>
           ) : (
-            <div>Toggle Status</div>
+            <div className="ui large active centered inline loader"></div>
           )}
         </div>
       </Provider>

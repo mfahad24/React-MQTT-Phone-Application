@@ -28,3 +28,15 @@
     transform: translateX(0%);
   }
 }
+
+/* loader css override  */
+.ui.large.loader:after,
+.ui.large.loader:before {
+  width: 7.5rem !important;
+  height: 7.5rem !important;
+}
+
+.ui.centered.inline.loader.active,
+.ui.centered.inline.loader.visible {
+  margin-top: 150px;
+}

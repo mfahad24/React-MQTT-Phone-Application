@@ -11,9 +11,9 @@ class Phone extends Component {
   componentDidUpdate() {
     console.log("FINAL CONNECTED:", this.props.connectedValue);
   }
-  turnPhoneOn = props => {
-    props.changeConnectedValue(1);
-  };
+  // turnPhoneOn = props => {
+  //   props.changeConnectedValue(1);
+  // };
 
   turnPhoneOff = props => {
     props.turnOffSignalStrength(0);
