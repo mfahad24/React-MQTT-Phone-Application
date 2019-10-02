@@ -1,6 +1,6 @@
 import { changeStrengthValue } from "./actions.js";
 import { signalStrength } from "./reducers.js";
-import { signalStrengthSaga } from "./sagas.js";
+import { signalStrengthSaga, listenForConnection } from "./sagas.js";
 
 export function signalStrengthModule() {
   return {
@@ -15,6 +15,6 @@ export function signalStrengthModule() {
     //optional: any actions to dispatch when the module is unloaded,
     finalactions: [],
     //this property will be used by the saga extension to run sagas for the moduleD??????
-    sagas: [signalStrengthSaga]
+    sagas: [signalStrengthSaga, listenForConnection]
   };
 }

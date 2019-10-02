@@ -18,7 +18,6 @@ class Phone extends Component {
   turnPhoneOff = props => {
     props.turnOffSignalStrength(0);
     props.changeMqttBoolean(false);
-    props.changeConnectedValue(0);
 
     let phone = document.querySelector(".phonecontainer");
     phone.classList.remove("vibrate");
