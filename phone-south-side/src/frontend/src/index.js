@@ -1,3 +1,5 @@
+//leaving comment outs below because it was setup like this before Redux Dynamic Module setup
+
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";

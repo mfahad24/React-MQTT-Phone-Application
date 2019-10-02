@@ -1,11 +1,11 @@
 import { takeEvery } from "redux-saga/effects";
 import { TURN_OFF_SIGNAL_STRENGTH } from "../../constants";
-// import store from "../../App.js";
 
 let mqtt = require("async-mqtt");
 let client = mqtt.connect("ws://127.0.0.1:7000");
 
-//sagas to turn off signal strength
+//stops signal strength from coming through
+
 export function* switchOffPhone() {
   yield takeEvery(TURN_OFF_SIGNAL_STRENGTH, changeSignalStrength);
 }
@@ -28,100 +28,5 @@ export function listenForDisconnectValue() {
     console.log("topic:", message);
     let returnedPayload = JSON.parse(payload.toString());
     console.log("returned final connected:", returnedPayload.payload);
-    // testFunc(payloadObject.payload);
-    // put({ type: CHANGE_CONNECTED_VALUE_ASYNC, payload: payloadObject.payload });
-    // store.dispatch({
-    //   type: CHANGE_CONNECTED_VALUE_ASYNC,
-    //   payload: payloadObject.payload
-    // });
   });
-  // yield console.log("I AM HERE", payloadObject);
-
-  // while (false) {
-  //   console.log("HELLO");
-  //   const { payload } = yield take("REQUEST");
-  //   yield fork(handleRequest, payload);
-  // }
-  // ----------
-  // console.log("OH HEY");
-  // const channel = yield call(webSocketEndChannel);
-  // while (true) {
-  //   const action = yield take(channel);
-  //   yield put(action);
-  // }
 }
-
-// export function testFunc(num) {
-//   console.log("payload value", num);
-// }
-
-// function* handleRequest(payload) {
-//   yield console.log("HELLO");
-// }
-
-// export function* test() {
-//   yield console.log("HEY");
-// }
-
-// function webSocketEndChannel() {
-//   return eventChannel(emitter => {
-//     client.subscribe("hmi/phone/connected");
-//     client.on("message", function(message, payload) {
-//       // console.log(payload.toString());
-//       let payloadObject = JSON.parse(payload.toString());
-//       return emitter({
-//         type: CHANGE_CONNECTED_VALUE_ASYNC,
-//         payload: payloadObject.payload
-//       });
-//     });
-
-//     //unsubscribe function below
-//     return () => {
-//       console.log("SOCKET OFF!!");
-//     };
-//   });
-// }
-
-// export function* listenForDisconnetValue() {
-//   yield client.subscribe("hmi/phone/connected", () => {
-//     console.log("HELLO THERE");
-//   });
-// }
-
-//-----------------------------------------
-
-// export function* listenForDisconnectValue() {
-//   const channel = yield call(disconnectValueEmitter);
-//   while (true) {
-//     const action = yield take(channel);
-//     yield put(action);
-//   }
-// }
-
-// function disconnectValueEmitter() {
-//   return eventChannel(emitter => {
-//     client.subscribe("hmi/phone/connected");
-//     client.on("message", function(message, payload) {
-//       console.log("HERE IS THE PAYLOAD", payload.toString());
-//       let payloadObject = JSON.parse(payload.toString());
-//       return emitter({
-//         type: CHANGE_CONNECTED_VALUE_ASYNC,
-//         payload: payloadObject.payload
-//       });
-//     });
-
-//     //unsubscribe function below
-//     return () => {
-//       console.log("SOCKET OFF!!");
-//     };
-//   });
-// }
-
-//sagas that watch and act upon phone connection and strength value change
-// export function* watchConnectedValueChange() {
-//   yield takeEvery(CHANGE_CONNECTED_VALUE, changeConnectedValue);
-// }
-
-// export function* changeConnectedValue() {
-//   yield put({ type: CHANGE_CONNECTED_VALUE_ASYNC, payload: 1 });
-// }

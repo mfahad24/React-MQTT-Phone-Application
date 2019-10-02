@@ -2,7 +2,6 @@ import React, { lazy, Suspense } from "react";
 
 import Phone from "./PhoneComponent/Phone.js";
 import { DynamicModuleLoader } from "redux-dynamic-modules";
-// import { ModuleExample } from "./DynamicModule.js";
 //allows us to load/unload modules dynamically
 import { createStore } from "redux-dynamic-modules";
 import { Provider } from "react-redux";
@@ -29,7 +28,6 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log("CHECK STATUS", this.state.checked);
     return (
       <Provider store={this.store}>
         <div>
@@ -69,6 +67,7 @@ class App extends React.Component {
   }
 }
 
+//App setup with functional component
 // const App = () => {
 //   return (
 //     <div>

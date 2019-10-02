@@ -11,10 +11,6 @@ class Phone extends Component {
   componentDidUpdate() {
     console.log("FINAL CONNECTED:", this.props.connectedValue);
   }
-  // turnPhoneOn = props => {
-  //   props.changeConnectedValue(1);
-  // };
-
   turnPhoneOff = props => {
     props.turnOffSignalStrength(0);
     props.changeMqttBoolean(false);
@@ -47,7 +43,8 @@ class Phone extends Component {
           className="ui button blue huge"
           disabled={
             this.props.connectedValue === 0 ||
-            this.props.connectedValue === undefined
+            this.props.connectedValue === undefined ||
+            this.props.mqttClientBoolean === false
           }
           onClick={() => this.turnPhoneOff(this.props)}
         >

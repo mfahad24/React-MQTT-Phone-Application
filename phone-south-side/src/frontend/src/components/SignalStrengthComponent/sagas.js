@@ -8,20 +8,19 @@ import {
 let mqtt = require("async-mqtt");
 let client = mqtt.connect("ws://127.0.0.1:7000");
 
+//connects to MQtt
 export function* listenForConnection() {
   yield takeEvery(CHANGE_CONNECTED_VALUE, connectToMqtt);
 }
 
 export function* connectToMqtt() {
-  yield console.log("connecting...");
   let payload = JSON.stringify({ payload: 1 });
-  yield client.publish("hmi/phone/set/connected", payload, null, () => {
-    console.log("OK IT WENT THROUGH");
-  });
+  yield client.publish("hmi/phone/set/connected", payload, null, () => {});
 }
 
 //-------------------
 
+//receives signal strength and saves it to store
 export function* signalStrengthSaga() {
   const channel = yield call(websocketInitChannel);
   while (true) {

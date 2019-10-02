@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+// import { combineReducers } from "redux";
 import {
   CHANGE_CONNECTED_VALUE,
   CHANGE_CONNECTED_VALUE_ASYNC,
@@ -22,21 +22,17 @@ export const connectedValue = (state = 0, action) => {
   } else if (action.type === CHANGE_CONNECTED_VALUE_ASYNC) {
     return { ...state, connectVal: action.payload };
   } else {
-    // console.log("HEY THERE", initialConnectedValues.connectVal);
     return state;
   }
 };
 
 export const mqttClientBoolean = (state = false, action) => {
-  // console.log("OH MY GOD");
   if (
     action.type === CHANGE_MQTTBOOL_VALUE ||
     action.type === CHANGE_MQTTBOOL_VALUE_ASYNC
   ) {
-    // console.log("OH MY GOD");
     return { ...state, clientBoolean: action.payload };
   } else {
-    // console.log("OH WELL");
     return state;
   }
 };
