@@ -58,7 +58,10 @@ class App extends React.Component {
               </Suspense>
             </DynamicModuleLoader>
           ) : (
-            <div className="ui large active centered inline loader"></div>
+            <div>
+              <div className="ui large active centered inline loader"></div>
+              <div></div>
+            </div>
           )}
         </div>
       </Provider>
