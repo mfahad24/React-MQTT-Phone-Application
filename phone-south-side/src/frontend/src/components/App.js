@@ -27,14 +27,32 @@ class App extends React.Component {
     });
   }
 
+  showDeviceText() {
+    if (this.state.checked === false) {
+      return (
+        <div className="slide">
+          show device <i className="angle double right icon"></i>
+        </div>
+      );
+    } else {
+      return (
+        <div className="hide-phone">
+          hide device <i className="angle double right icon"></i>
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <Provider store={this.store}>
         <div>
           <div className="headertoggle">
-            <div className="slide">
+            {/* <div className="signature">Signal Strength Display</div> */}
+            {/* <div className="slide">
               show device <i className="angle double right icon"></i>
-            </div>
+            </div> */}
+            {this.showDeviceText()}
             <div className="ui toggle checkbox">
               <input
                 onChange={e => this.setState({ checked: e.target.checked })}
@@ -57,8 +75,21 @@ class App extends React.Component {
             </DynamicModuleLoader>
           ) : (
             <div>
-              <div className="ui large active centered inline loader"></div>
-              <div></div>
+              {/* <div className="ui large active centered inline loader"></div> */}
+              <div className="sk-circle">
+                <div className="sk-circle1 sk-child"></div>
+                <div className="sk-circle2 sk-child"></div>
+                <div className="sk-circle3 sk-child"></div>
+                <div className="sk-circle4 sk-child"></div>
+                <div className="sk-circle5 sk-child"></div>
+                <div className="sk-circle6 sk-child"></div>
+                <div className="sk-circle7 sk-child"></div>
+                <div className="sk-circle8 sk-child"></div>
+                <div className="sk-circle9 sk-child"></div>
+                <div className="sk-circle10 sk-child"></div>
+                <div className="sk-circle11 sk-child"></div>
+                <div className="sk-circle12 sk-child"></div>
+              </div>
             </div>
           )}
         </div>

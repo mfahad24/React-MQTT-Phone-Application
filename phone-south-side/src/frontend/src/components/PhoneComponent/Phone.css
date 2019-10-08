@@ -9,15 +9,15 @@
 
 .strengthimage {
   width: 200px;
-  top: 170px;
-  right: 200px;
+  top: 110px;
+  right: 50px;
   position: absolute;
 }
 
 .offimage {
   width: 200px;
-  top: 170px;
-  right: 35px;
+  top: 110px;
+  right: -110px;
   position: absolute;
   /* this needed for animation keyframe below  */
   animation: cssAnimation 0s 2s forwards;
@@ -35,7 +35,7 @@
 .phonecontainer {
   position: relative;
   filter: grayscale(1);
-  margin-top: 10px;
+  margin-top: 50px;
 }
 
 .buttondiv {

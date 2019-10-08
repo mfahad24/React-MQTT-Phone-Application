@@ -7,9 +7,10 @@ import TwoImage from "../../images/2.png";
 import ThreeImage from "../../images/3.png";
 import FourImage from "../../images/4.png";
 import FiveImage from "../../images/5.png";
-import PhoneImage from "../../images/phone.png";
+import PhoneImage from "../../images/phone3.png";
 import "../PhoneComponent/Phone.css";
 import { changeStrengthValue } from "./actions.js";
+import PropTypes from "prop-types";
 
 class SignalStrength extends Component {
   selectSignalStrengthImage() {
@@ -54,6 +55,10 @@ class SignalStrength extends Component {
     );
   }
 }
+
+SignalStrength.propTypes = {
+  signalStrength: PropTypes.number
+};
 
 const mapStateToProps = state => {
   return {
