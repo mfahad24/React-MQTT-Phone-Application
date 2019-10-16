@@ -90,9 +90,13 @@ class App extends React.Component {
                 <div className="sk-circle11 sk-child"></div>
                 <div className="sk-circle12 sk-child"></div>
               </div>
+              {/* how to do inline style ==> style={{ fontWeight: "bold" }} */}
             </div>
           )}
         </div>
+        <p className="signature">
+          Signal Strenth Display &nbsp; | &nbsp; Created by Mohammed Fahad
+        </p>
       </Provider>
     );
   }

@@ -20,6 +20,19 @@
   animation-delay: 0s;
 }
 
+.signature {
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  margin-left: -300px;
+  width: 600px;
+}
+
 @keyframes slide {
   0% {
     transform: translateX(-500%);
